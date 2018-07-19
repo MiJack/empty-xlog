@@ -1,7 +1,7 @@
 package com.mijack;
 
 /**
- * @author Mi&Jack
+ * @author Mi&amp;Jack
  */
 public class XlogBuilder {
 
@@ -38,6 +38,5 @@ public class XlogBuilder {
                                          Object instance, MethodExecuteResultType resultType, Object result, Throwable throwable) {
         // hook by xposed
     }
-
 
 }
