@@ -90,21 +90,21 @@ public class XlogStater {
         NO_LOG;
     }
 
-    public static StateMethodType getStateType(Member method) {
-        if (method == null) {
+    public static StateMethodType getStateType(String method, Object instance, Object[] args) {
+        if (instance == null) {
             return StateMethodType.NO_LOG;
         }
-        if (Activity.class.isAssignableFrom(method.getDeclaringClass())) {
+        if (instance instanceof Activity) {
             for (String methodSign : ACTIVITY_LIFECYCLE_METHOD_LIST) {
-                if (method.toString().endsWith(methodSign)) {
+                if (method.endsWith(methodSign)) {
                     return StateMethodType.ACTIVITY;
                 }
             }
             return StateMethodType.NO_LOG;
         }
-        if (View.OnClickListener.class.isAssignableFrom(method.getDeclaringClass())) {
+        if (instance instanceof View.OnClickListener) {
             for (String methodSign : WIDGET_CLICK_METHOD_LIST) {
-                if (method.toString().endsWith(methodSign)) {
+                if (method.endsWith(methodSign)) {
                     return StateMethodType.ON_CLICK;
                 }
             }

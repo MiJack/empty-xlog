@@ -53,8 +53,7 @@ public class XlogBuilder {
         }
         sb.append(",").append(XlogUtils.paramsToString(args));
         try {
-            Method method = XlogUtils.methodSignToMethod(methodSign);
-            XlogStater.StateMethodType stateType = XlogStater.getStateType(method);
+            XlogStater.StateMethodType stateType = XlogStater.getStateType(methodSign,instance,args);
             switch (stateType) {
                 case ACTIVITY:
                     sb.append(",").append(
